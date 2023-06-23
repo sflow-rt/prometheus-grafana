@@ -1,0 +1,23 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first.rules"
+  # - "second.rules"
+
+scrape_configs:
+  - job_name: 'sflow-rt-analyzer'
+    metrics_path: /prometheus/analyzer/txt
+    scheme: http
+    static_configs:
+      - targets: [ 'sflow-rt:8008' ] 
+  - job_name: 'sflow-rt-interfaces'
+    metrics_path: /prometheus/metrics/ALL/ifinutilization,ifoututilization,ifinerrors,ifouterrors,ifindiscards,ifoutdiscards/txt
+    scheme: http
+    static_configs:
+      - targets: [ 'sflow-rt:8008' ]
+    metric_relabel_configs:
+      - source_labels: ['agent', 'datasource']
+        separator: ':'
+        target_label: instance

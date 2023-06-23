@@ -1,0 +1,50 @@
+version: '3.8'
+
+networks:
+
+  monitoring:
+    driver: bridge
+
+services:
+
+  sflow-rt:
+    image: sflow/prometheus
+    container_name: sflow-rt
+    restart: unless-stopped
+    ports:
+      - '6343:6343/udp'
+      - '8008:8008'
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    user: ${DOCKER_USER}
+    restart: unless-stopped
+    depends_on:
+      - sflow-rt
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/var:/prometheus
+    ports:
+      - '9090:9090'
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    user: ${DOCKER_USER} 
+    restart: unless-stopped
+    depends_on:
+      - sflow-rt
+      - prometheus
+    volumes:
+      - ./grafana/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml
+      - ./grafana/var:/var/lib/grafana
+    ports:
+      - '3000:3000'
+    networks:
+      - monitoring
+
