@@ -37,6 +37,8 @@ services:
     container_name: grafana
     user: ${DOCKER_USER} 
     restart: unless-stopped
+    environment:
+      - GF_INSTALL_PLUGINS=knightss27-weathermap-panel
     depends_on:
       - sflow-rt
       - prometheus
