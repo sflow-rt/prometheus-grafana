@@ -8,7 +8,7 @@ networks:
 services:
 
   sflow-rt:
-    image: sflow/prometheus
+    image: sflow/${RT_IMAGE:-prometheus}
     container_name: sflow-rt
     restart: unless-stopped
     ports:
@@ -38,7 +38,7 @@ services:
     user: ${DOCKER_USER} 
     restart: unless-stopped
     environment:
-      - GF_INSTALL_PLUGINS=knightss27-weathermap-panel
+      - GF_INSTALL_PLUGINS=knightss27-weathermap-panel,esnet-matrix-panel
     depends_on:
       - sflow-rt
       - prometheus
