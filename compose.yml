@@ -11,6 +11,8 @@ services:
     image: sflow/${RT_IMAGE:-prometheus}
     container_name: sflow-rt
     restart: unless-stopped
+    volumes:
+      - ./sflow-rt/store:/sflow-rt/store
     ports:
       - '6343:6343/udp'
       - '8008:8008'
