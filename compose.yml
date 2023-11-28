@@ -41,6 +41,8 @@ services:
     restart: unless-stopped
     environment:
       - GF_INSTALL_PLUGINS=knightss27-weathermap-panel,esnet-matrix-panel
+      - GF_RENDERING_SERVER_URL=http://renderer:8081/render
+      - GF_RENDERING_CALLBACK_URL=http://grafana:3000/
     depends_on:
       - sflow-rt
       - prometheus
@@ -49,6 +51,11 @@ services:
       - ./grafana/var:/var/lib/grafana
     ports:
       - '3000:3000'
+    networks:
+      - monitoring
+
+  renderer:
+    image: grafana/grafana-image-renderer
     networks:
       - monitoring
 
