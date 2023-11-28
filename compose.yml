@@ -56,6 +56,7 @@ services:
 
   renderer:
     image: grafana/grafana-image-renderer
+    container_name: renderer
     networks:
       - monitoring
 
