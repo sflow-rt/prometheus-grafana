@@ -35,6 +35,13 @@ services:
     networks:
       - monitoring
 
+  renderer:
+    image: grafana/grafana-image-renderer
+    container_name: renderer
+    restart: unless-stopped
+    networks:
+      - monitoring
+
   grafana:
     image: grafana/grafana
     container_name: grafana
@@ -47,17 +54,12 @@ services:
     depends_on:
       - sflow-rt
       - prometheus
+      - renderer
     volumes:
       - ./grafana/prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml
       - ./grafana/var:/var/lib/grafana
     ports:
       - '3000:3000'
-    networks:
-      - monitoring
-
-  renderer:
-    image: grafana/grafana-image-renderer
-    container_name: renderer
     networks:
       - monitoring
 
