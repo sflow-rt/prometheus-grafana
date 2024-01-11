@@ -10,6 +10,7 @@ services:
   sflow-rt:
     image: sflow/${RT_IMAGE:-prometheus}
     container_name: sflow-rt
+    user: ${DOCKER_USER}
     restart: unless-stopped
     volumes:
       - ./sflow-rt/store:/sflow-rt/store
