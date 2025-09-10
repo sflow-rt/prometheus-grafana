@@ -10,6 +10,9 @@ services:
     container_name: sflow-rt
     user: ${DOCKER_USER}
     restart: unless-stopped
+    environment:
+      - RTMEM=${RTMEM:-1G}
+      - RTPROP=${RTPROP:-}
     volumes:
       - ./sflow-rt/store:/sflow-rt/store
     ports:
