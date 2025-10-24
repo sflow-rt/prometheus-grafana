@@ -1,0 +1,3 @@
+RT_IMAGE=prometheus
+RT_MEM=1G
+PROM_RETENTION=30d
