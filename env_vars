@@ -1,3 +1,4 @@
 RT_IMAGE=prometheus
 RT_MEM=1G
 PROM_RETENTION=30d
+DOCKER_USER="$(id -u):$(id -g)"

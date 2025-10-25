@@ -9,3 +9,4 @@ Use Docker compose to deploy Prometheus and Grafana stack.
 - ``RTMEM`` Set sFlow-RT memory, default ``1G``
 - ``RTPROP`` Set sFlow-RT properties, no default
 - ``PROM_RETENTION`` Set Prometheus retention time, default ``30d``
+- ``DOCKER_USER`` Set user for containers, default ``"$(id -u):$(id -g)"``
