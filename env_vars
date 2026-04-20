@@ -1,5 +1,6 @@
 RT_IMAGE=prometheus
 RT_MEM=1G
+RT_HOSTNAME=$(hostname -f)
 PROM_RETENTION=30d
 GRAFANA_TOKEN=MyT0k3n!
 DOCKER_USER="$(id -u):$(id -g)"
