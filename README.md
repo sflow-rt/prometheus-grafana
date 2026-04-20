@@ -17,7 +17,9 @@ Stop containers.
 ## Environment variables
 
 - ``RT_IMAGE`` Set the [sflow-rt](https://hub.docker.com/r/sflow/sflow-rt) Docker hub image, default ``prometheus``
+- ``RT_HOSTNAME`` Set hostname for sFlow-RT, default ``$(hostname -f)``
 - ``RTMEM`` Set sFlow-RT memory, default ``1G``
 - ``RTPROP`` Set sFlow-RT properties, no default
 - ``PROM_RETENTION`` Set Prometheus retention time, default ``30d``
+- ``GRAFANA_TOKEN`` Set auth token for Grafana / Renderer communication
 - ``DOCKER_USER`` Set user for containers, default ``"$(id -u):$(id -g)"``
