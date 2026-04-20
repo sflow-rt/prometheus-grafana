@@ -8,7 +8,7 @@ services:
   sflow-rt:
     image: sflow/${RT_IMAGE:-prometheus}
     container_name: sflow-rt
-    hostname: ${RT_HOSTNAME}
+    hostname: ${RT_HOSTNAME:-sflow-rt}
     user: ${DOCKER_USER}
     restart: unless-stopped
     environment:
